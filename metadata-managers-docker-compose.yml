@@ -28,3 +28,11 @@ services:
       - "com.centurylinklabs.watchtower.enable=false"
     ports:
       - 8888:8080
+
+  whatsupdocker:
+    image: fmartinou/whats-up-docker
+    container_name: whatsupdocker
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+    ports:
+      - 3333:3000
