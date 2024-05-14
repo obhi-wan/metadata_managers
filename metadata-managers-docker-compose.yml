@@ -35,4 +35,4 @@ services:
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock:ro
     ports:
-      - 3333:3000
+      - 3100:3000
