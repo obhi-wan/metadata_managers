@@ -1,0 +1,28 @@
+version: '3'
+services:
+  dupeguru:
+    image: jlesage/dupeguru
+    container_name: duperguru
+    ports:
+      - "5800:5800"
+    volumes:
+      - "/home/milirbaba/docker/dupeguru/:/config:rw"
+      - "/media/milirbaba/HomeFlix:/storage:rw"
+      - "/media/milirbaba/HomeFlix/dupeguru_trash:/trash:rw"
+  
+  picard:
+    image: mikenye/picard:latest
+    container_name: musicbrainz
+    ports:
+      - "5900:5800"
+    volumes:
+      - "/home/milirbaba/docker/picard/config:/config:rw"
+      - "/media/milirbaba/HomeFlix/Music:/storage:rw"
+
+  watchtower:
+    image: containrrr/watchtower
+    container_name: watchtower
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+    ports:
+      - 8888:8080
