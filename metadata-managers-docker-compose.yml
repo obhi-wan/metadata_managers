@@ -36,3 +36,10 @@ services:
       - /var/run/docker.sock:/var/run/docker.sock:ro
     ports:
       - 3100:3000
+
+  abs-goodreads:
+    image: arranhs/abs-tract
+    container_name: abstract_ABS
+    ports:
+    - "5556:5555"
+    restart: unless-stopped
