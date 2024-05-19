@@ -33,6 +33,24 @@ services:
       - /var/log:/host/var/log:ro
       - /var/run/docker.sock:/var/run/docker.sock:ro
 
+  volumes:
+    netdatalib:
+    netdatacache:
+
+  check-mk-raw:
+        stdin_open: true
+        tty: true
+        ports:
+            - 8080:5000
+            - 8001:8000
+        tmpfs: /opt/omd/sites/cmk/tmp:uid=1000,gid=1000
+        volumes:
+            - monitoring:/omd/sites
+            - /etc/localtime:/etc/localtime:ro
+        container_name: monitoring
+        restart: always
+        image: checkmk/check-mk-raw:2.3.0p2
 volumes:
-  netdatalib:
-  netdatacache:
+    monitoring:
+        external: true
+        name: monitoring
